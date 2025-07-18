@@ -1,5 +1,6 @@
 # Biogenom
-Web API построен по принципам чистой архитектуры:
+Web API построен по принципам чистой архитектуры, данный способ позволяет разделить компоненты программы на отдельные слои, что позволяет реализовать гибкую разработку, котороую в будующем будет легко тестировать и масштабировать.
+Далее описанны компаненты программы:
 1)Controllers - Реализация API, принимает запросы и возвращает результат.
 2)Data - Конфигурация EF Core.
 3)DataTransfer - Регулирует то что вернется пользователь.
@@ -28,5 +29,9 @@ Users, UserActivity, UserSupplement, ProductConsumption, ProductCategory, Produc
 BaseRepository, ProductConsumptionRepository, SupplementRepository, UserRepository - Реализация интересов I*Repository.
 # Services
 ProductConsumptionService, SupplementService, UserService -  Реализация интересов I*Services.
+# Images
+Данная папка содержит изображения схемы БД и диаграмму последовательности
 # Описание работы
-Пользователь отправляет запрос в API и получает данные. Схема данных представлена в папке Image/schema.png
+Client отправляет HTTP-запрос в Controller, который вызывает нужный метод в Services. Services обращаются к Repository за данными, Repository выполняет SQL-запросы к БД. 
+Полученные данные передаются обратно по цепочке: Repository возвращает результат в Services, Services преобразуют данные и передают в Controller, который формирует JSON-ответ и отправляет его клиенту. 
+Вся работа строится по цепочке "Client -> Controller -> Services -> Repository -> БД -> Repository -> Services -> Controller -> Client", где каждый слой выполняет свою строго определённую задачу.
