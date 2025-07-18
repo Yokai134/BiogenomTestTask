@@ -30,7 +30,7 @@ BaseRepository, ProductConsumptionRepository, SupplementRepository, UserReposito
 # Services
 ProductConsumptionService, SupplementService, UserService -  Реализация интересов I*Services.
 # Images
-Данная папка содержит изображения схемы БД и диаграмму последовательности
+Данная папка содержит изображения схемы БД и диаграмму последовательности.
 # Описание работы
 Client отправляет HTTP-запрос в Controller, который вызывает нужный метод в Services. Services обращаются к Repository за данными, Repository выполняет SQL-запросы к БД. 
 Полученные данные передаются обратно по цепочке: Repository возвращает результат в Services, Services преобразуют данные и передают в Controller, который формирует JSON-ответ и отправляет его клиенту. 
